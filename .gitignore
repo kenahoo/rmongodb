@@ -25,3 +25,4 @@ rmongodb/src/mongo.c
 rmongodb/src/env.h
 rmongodb/src/env.c
 rmongodb/src/numbers.c
+.Rproj.user
