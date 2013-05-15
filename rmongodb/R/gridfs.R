@@ -34,6 +34,7 @@
 ##' \code{\link{mongo.gridfs.store}},\cr
 ##' \code{\link{mongo.gridfile.writer.create}},\cr
 ##' \code{\link{mongo.gridfs.find}}, \code{link{mongo.shorthand}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -61,6 +62,7 @@ mongo.gridfs.create <- function(mongo, db, prefix="fs")
 ##' @return NULL
 ##' @seealso \link{mongo.gridfs},\cr \code{\link{mongo.gridfs.create}},\cr
 ##' \code{\link{mongo.gridfs.store.file}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -94,6 +96,7 @@ mongo.gridfs.destroy <- function(gridfs)
 ##' operation.
 ##' @seealso \link{mongo.gridfs},\cr \code{\link{mongo.gridfs.create}},\cr
 ##' \code{\link{mongo.gridfs.remove.file}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -120,6 +123,7 @@ mongo.gridfs.store.file <- function(gridfs, filename, remotename="", contenttype
 ##' @return NULL
 ##' @seealso \link{mongo.gridfs},\cr \code{\link{mongo.gridfs.store.file}}\cr
 ##' \code{\link{mongo.gridfs.store}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -157,6 +161,7 @@ mongo.gridfs.remove.file <- function(gridfs, remotename)
 ##' operation.
 ##' @seealso \link{mongo.gridfs},\cr \code{\link{mongo.gridfs.create}},\cr
 ##' \code{\link{mongo.gridfs.remove.file}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -198,6 +203,7 @@ mongo.gridfs.store <- function(gridfs, raw, remotename, contenttype="")
 ##' @seealso \link{mongo.gridfs},\cr \code{\link{mongo.gridfs.create}},\cr
 ##' \code{\link{mongo.gridfile.writer.write}},\cr
 ##' \code{\link{mongo.gridfile.writer.finish}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -246,6 +252,7 @@ mongo.gridfile.writer.create <- function(gridfs, remotename, contenttype="")
 ##' \code{\link{mongo.gridfile.writer.create}},\cr
 ##' \link{mongo.gridfile.writer},\cr
 ##' \code{\link{mongo.gridfile.writer.finish}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -286,6 +293,7 @@ mongo.gridfile.writer.write <- function(gfw, raw)
 ##' @seealso \link{mongo.gridfs},\cr
 ##' \code{\link{mongo.gridfile.writer.create}},\cr
 ##' \link{mongo.gridfile.writer},\cr \code{\link{mongo.gridfile.writer.write}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -331,6 +339,7 @@ mongo.gridfile.writer.finish <- function(gfw)
 ##' corresponding to the found GridFS file.
 ##' @seealso \link{mongo.gridfile},\cr
 ##' \code{\link{mongo.gridfile.get.filename}},\cr \link{mongo.gridfs}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -374,6 +383,7 @@ mongo.gridfs.find <- function(gridfs, query) {
 ##' @return NULL
 ##' @seealso \code{\link{mongo.gridfs.find}},\cr \link{mongo.gridfile},\cr
 ##' \link{mongo.gridfs}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -414,6 +424,7 @@ mongo.gridfile.destroy <- function(gridfile)
 ##' \code{\link{mongo.gridfile.get.chunks}},\cr
 ##' \code{\link{mongo.gridfile.read}},\cr \code{\link{mongo.gridfile.seek}},\cr
 ##' \code{\link{mongo.gridfile.pipe}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -453,6 +464,7 @@ mongo.gridfile.get.descriptor <- function(gridfile)
 ##' \code{\link{mongo.gridfile.get.chunks}},\cr
 ##' \code{\link{mongo.gridfile.read}},\cr \code{\link{mongo.gridfile.seek}},\cr
 ##' \code{\link{mongo.gridfile.pipe}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -499,6 +511,7 @@ mongo.gridfile.get.filename <- function(gridfile)
 ##' \code{\link{mongo.gridfile.get.chunks}},\cr
 ##' \code{\link{mongo.gridfile.read}},\cr \code{\link{mongo.gridfile.seek}},\cr
 ##' \code{\link{mongo.gridfile.pipe}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -538,6 +551,7 @@ mongo.gridfile.get.length <- function(gridfile)
 ##' \code{\link{mongo.gridfile.get.chunks}},\cr
 ##' \code{\link{mongo.gridfile.read}},\cr \code{\link{mongo.gridfile.seek}},\cr
 ##' \code{\link{mongo.gridfile.pipe}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -577,6 +591,7 @@ mongo.gridfile.get.chunk.size <- function(gridfile)
 ##' \code{\link{mongo.gridfile.get.chunks}},\cr
 ##' \code{\link{mongo.gridfile.read}},\cr \code{\link{mongo.gridfile.seek}},\cr
 ##' \code{\link{mongo.gridfile.pipe}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -616,6 +631,7 @@ mongo.gridfile.get.chunk.count <- function(gridfile)
 ##' \code{\link{mongo.gridfile.get.chunks}},\cr
 ##' \code{\link{mongo.gridfile.read}},\cr \code{\link{mongo.gridfile.seek}},\cr
 ##' \code{\link{mongo.gridfile.pipe}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -654,6 +670,7 @@ mongo.gridfile.get.content.type <- function(gridfile)
 ##' \code{\link{mongo.gridfile.get.chunks}},\cr
 ##' \code{\link{mongo.gridfile.read}},\cr \code{\link{mongo.gridfile.seek}},\cr
 ##' \code{\link{mongo.gridfile.pipe}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -692,6 +709,7 @@ mongo.gridfile.get.upload.date <- function(gridfile)
 ##' \code{\link{mongo.gridfile.get.chunks}},\cr
 ##' \code{\link{mongo.gridfile.read}},\cr \code{\link{mongo.gridfile.seek}},\cr
 ##' \code{\link{mongo.gridfile.pipe}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -734,6 +752,7 @@ mongo.gridfile.get.md5 <- function(gridfile)
 ##' \code{\link{mongo.gridfile.get.chunks}},\cr
 ##' \code{\link{mongo.gridfile.read}},\cr \code{\link{mongo.gridfile.seek}},\cr
 ##' \code{\link{mongo.gridfile.pipe}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -780,6 +799,7 @@ mongo.gridfile.get.metadata <- function(gridfile)
 ##' \code{\link{mongo.gridfile.get.chunks}},\cr
 ##' \code{\link{mongo.gridfile.read}},\cr \code{\link{mongo.gridfile.seek}},\cr
 ##' \code{\link{mongo.gridfile.pipe}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -834,6 +854,7 @@ mongo.gridfile.get.chunk <- function(gridfile, i)
 ##' \code{\link{mongo.gridfile.get.chunk}},\cr
 ##' \code{\link{mongo.gridfile.read}},\cr \code{\link{mongo.gridfile.seek}},\cr
 ##' \code{\link{mongo.gridfile.pipe}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -893,6 +914,7 @@ mongo.gridfile.get.chunks <- function(gridfile, start, count)
 ##' \code{\link{mongo.gridfile.get.chunk}},\cr
 ##' \code{\link{mongo.gridfile.get.chunks}},\cr
 ##' \code{\link{mongo.gridfile.seek}},\cr \code{\link{mongo.gridfile.pipe}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -935,6 +957,7 @@ mongo.gridfile.read <- function(gridfile, size)
 ##' \code{\link{mongo.gridfile.get.chunk}},\cr
 ##' \code{\link{mongo.gridfile.get.chunks}},\cr
 ##' \code{\link{mongo.gridfile.read}},\cr \code{\link{mongo.gridfile.pipe}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -978,6 +1001,7 @@ mongo.gridfile.seek <- function(gridfile, offset)
 ##' \code{\link{mongo.gridfile.get.chunk}},\cr
 ##' \code{\link{mongo.gridfile.get.chunks}},\cr
 ##' \code{\link{mongo.gridfile.read}},\cr \code{\link{mongo.gridfile.seek}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -1011,4 +1035,3 @@ mongo.gridfile.pipe <- function(gridfile, con) {
     mongo.cursor.destroy(cursor)
     NULL
 }
-

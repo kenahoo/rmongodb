@@ -29,6 +29,7 @@
 ##' \code{\link{mongo.bson.buffer.create}},\cr
 ##' \code{\link{mongo.bson.buffer.append}},\cr
 ##' \code{\link{mongo.bson.from.buffer}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo.shorthand()

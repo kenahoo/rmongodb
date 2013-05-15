@@ -23,6 +23,7 @@
 ##' 
 ##' @return An empty mongo.bson object
 ##' @seealso \link{mongo.bson}
+##' @export
 ##' @examples
 ##' 
 ##' # Use an empty mongo.bson for the query object which matches everything.
@@ -48,6 +49,7 @@ mongo.bson.empty <- function()
 ##' @return (integer) the number of bytes taken up by the BSON data attached to
 ##' the mongo.bson object.
 ##' @seealso \link{mongo.bson}
+##' @export
 ##' @examples
 ##' 
 ##' # should report 5
@@ -76,6 +78,7 @@ mongo.bson.size <- function(b)
 ##' @return NULL
 ##' @seealso \link{mongo.bson},\cr \code{\link{mongo.bson.from.list}},\cr
 ##' \code{\link{mongo.bson.from.buffer}}.
+##' @export
 ##' @examples
 ##' 
 ##' b <- mongo.bson.from.list(list(name="Cheryl", age=29))
@@ -99,6 +102,7 @@ mongo.bson.destroy <- function(b)
 ##' @param ... Parameters passed from generic.
 ##' @return The parameter is returned unchanged.
 ##' @seealso \link{mongo.bson}
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -134,6 +138,7 @@ mongo.bson.print <- function(x, ...) {
 ##' @param ... Parameters passed from generic.
 ##' @return The parameter is returned unchanged.
 ##' @seealso \code{\link{mongo.bson.print}},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -218,6 +223,7 @@ print.mongo.bson <- function(x, ...)
 ##' @return Best guess at an appropriate R object representing the mongo.bson
 ##' object.
 ##' @seealso \code{\link{mongo.bson.from.list}},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -254,6 +260,7 @@ mongo.bson.to.list <- function(b)
 ##' @return (\link{mongo.bson}) A mongo.bson object serialized from \code{lst}.
 ##' @seealso \code{\link{mongo.bson.to.list}},\cr \link{mongo.bson},\cr
 ##' \code{\link{mongo.bson.destroy}}.
+##' @export
 ##' @examples
 ##' 
 ##' lst <- list(name="John", age=32)
@@ -294,6 +301,7 @@ mongo.bson.from.list <- function(lst)
 ##' \code{\link{mongo.bson.iterator.key}},\cr
 ##' \code{\link{mongo.bson.iterator.type}},\cr
 ##' \code{\link{mongo.bson.iterator.value}},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -337,6 +345,7 @@ mongo.bson.iterator.create <- function(b)
 ##' found if name was found among the names of the fields; otherwise, NULL.
 ##' @seealso \link{mongo.bson.iterator},\cr
 ##' \code{\link{mongo.bson.iterator.value}},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' b <- mongo.bson.from.list(list(name="John", age=32L, 
@@ -411,6 +420,7 @@ mongo.bson.find <- function(b, name)
 ##' data is stored in the attribute "subtype". See
 ##' \code{\link{mongo.bson.buffer.append.raw}()}.
 ##' @seealso \link{mongo.bson.iterator.value},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -464,6 +474,7 @@ mongo.bson.value <- function(b, name)
 ##' \code{\link{mongo.bson.find}},\cr \code{\link{mongo.bson.iterator.key}},\cr
 ##' \code{\link{mongo.bson.iterator.type}},\cr
 ##' \code{\link{mongo.bson.iterator.value}},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -514,6 +525,7 @@ mongo.bson.iterator.next <- function(iter)
 ##' \code{\link{mongo.bson.iterator.next}},\cr
 ##' \code{\link{mongo.bson.iterator.type}},\cr
 ##' \code{\link{mongo.bson.iterator.value}},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -562,6 +574,7 @@ mongo.bson.iterator.key <- function(iter)
 ##' \code{\link{mongo.bson.iterator.next}},\cr
 ##' \code{\link{mongo.bson.iterator.key}},\cr
 ##' \code{\link{mongo.bson.iterator.value}},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -967,6 +980,7 @@ mongo.binary.user    <- 128L
 ##' \code{\link{mongo.bson.iterator.next}},\cr
 ##' \code{\link{mongo.bson.iterator.key}},\cr
 ##' \code{\link{mongo.bson.iterator.type}},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -1011,6 +1025,7 @@ mongo.bson.iterator.value <- function(iter)
 ##' \code{\link{mongo.bson.buffer.append.oid}},\cr
 ##' \code{\link{mongo.bson.buffer.append.list}},\cr
 ##' \link{mongo.bson.buffer},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -1044,6 +1059,7 @@ mongo.oid.from.string <- function(hexstr)
 ##' \code{\link{mongo.bson.buffer.append}},\cr
 ##' \code{\link{mongo.bson.buffer.append.oid}},\cr \link{mongo.bson.buffer},\cr
 ##' \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' oid <- mongo.oid.create()
@@ -1077,6 +1093,7 @@ mongo.oid.to.string <- function(oid)
 ##' \code{\link{mongo.bson.buffer.append}},\cr
 ##' \code{\link{mongo.bson.buffer.append.oid}},\cr \link{mongo.bson.buffer},\cr
 ##' \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' oid <- mongo.oid.create()
@@ -1108,6 +1125,7 @@ as.character.mongo.oid <- function(x, ...)
 ##' \code{\link{mongo.bson.buffer.append.oid}},\cr
 ##' \code{\link{mongo.bson.buffer.append.list}},\cr
 ##' \link{mongo.bson.buffer},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -1136,6 +1154,7 @@ mongo.oid.create <- function()
 ##' \code{\link{mongo.bson.buffer.append}},\cr
 ##' \code{\link{mongo.bson.buffer.append.oid}},\cr \link{mongo.bson.buffer},\cr
 ##' \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' oid <- mongo.oid.create()
@@ -1159,6 +1178,7 @@ mongo.oid.time <- function(oid)
 ##' @seealso \code{\link{mongo.oid.print}},\cr
 ##' \code{\link{mongo.oid.to.string}},\cr \link{mongo.bson.oid},\cr
 ##' \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' oid <- mongo.oid.create()
@@ -1190,6 +1210,7 @@ mongo.oid.print <- function(x)
 ##' @seealso \code{\link{mongo.oid.print}},\cr
 ##' \code{\link{mongo.oid.to.string}},\cr \link{mongo.bson.oid},\cr
 ##' \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' oid <- mongo.oid.create()
@@ -1226,6 +1247,7 @@ print.mongo.oid <- function(x, ...)
 ##' \code{\link{mongo.bson.buffer.append.time}},\cr
 ##' \code{\link{mongo.bson.buffer.append.list}},\cr
 ##' \link{mongo.bson.buffer},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -1262,6 +1284,7 @@ mongo.timestamp.create <- function(time, increment)
 ##' @seealso \link{mongo.code},\cr \code{\link{mongo.bson.buffer.append}},\cr
 ##' \code{\link{mongo.bson.buffer.append.list}},\cr
 ##' \link{mongo.bson.buffer},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -1298,6 +1321,7 @@ mongo.code.create <- function(code)
 ##' \code{\link{mongo.bson.buffer.append}},\cr
 ##' \code{\link{mongo.bson.buffer.append.list}},\cr
 ##' \link{mongo.bson.buffer},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -1330,6 +1354,7 @@ mongo.code.w.scope.create <- function(code, scope)
 ##' @seealso \link{mongo.symbol},\cr \code{\link{mongo.bson.buffer.append}},\cr
 ##' \code{\link{mongo.bson.buffer.append.list}},\cr
 ##' \link{mongo.bson.buffer},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -1364,6 +1389,7 @@ mongo.symbol.create <- function(value)
 ##' \code{\link{mongo.bson.buffer.append}},\cr
 ##' \code{\link{mongo.bson.buffer.append.list}},\cr
 ##' \link{mongo.bson.buffer},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -1401,6 +1427,7 @@ mongo.undefined.create <- function()
 ##' \code{\link{mongo.bson.buffer.append.regex}},\cr
 ##' \code{\link{mongo.bson.buffer.append.list}},\cr
 ##' \link{mongo.bson.buffer},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -1424,6 +1451,7 @@ mongo.regex.create <- function(pattern, options="")
 ##' 
 ##' @return A fresh \link{mongo.bson.buffer} object
 ##' @seealso \link{mongo.bson},\cr \link{mongo.bson.buffer}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -1450,6 +1478,7 @@ mongo.bson.buffer.create <- function()
 ##' @seealso \link{mongo.bson},\cr \link{mongo.bson.buffer},\cr
 ##' \code{\link{mongo.bson.buffer.append}},\cr
 ##' \code{\link{mongo.bson.destroy}}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -1489,6 +1518,7 @@ mongo.bson.from.buffer <- function(buf)
 ##' the data.
 ##' @seealso \link{mongo.bson},\cr \link{mongo.bson.buffer},\cr
 ##' \code{\link{mongo.bson.buffer.append}}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -1544,6 +1574,7 @@ mongo.bson.buffer.append.int <- function(buf, name, value)
 ##' the data.
 ##' @seealso \link{mongo.bson},\cr \link{mongo.bson.buffer},\cr
 ##' \code{\link{mongo.bson.buffer.append}}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -1598,6 +1629,7 @@ mongo.bson.buffer.append.bool <- function(buf, name, value)
 ##' the data.
 ##' @seealso \link{mongo.bson},\cr \link{mongo.bson.buffer},\cr
 ##' \code{\link{mongo.bson.buffer.append}}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -1661,6 +1693,7 @@ mongo.bson.buffer.append.double <- function(buf, name, value)
 ##' the data.
 ##' @seealso \link{mongo.bson},\cr \link{mongo.bson.buffer},\cr
 ##' \code{\link{mongo.bson.buffer.append}}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -1726,6 +1759,7 @@ mongo.bson.buffer.append.complex <- function(buf, name, value)
 ##' the data.
 ##' @seealso \link{mongo.bson},\cr \link{mongo.bson.buffer},\cr
 ##' \code{\link{mongo.bson.buffer.append}}.\cr
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -1771,6 +1805,7 @@ mongo.bson.buffer.append.long <- function(buf, name, value)
 ##' the data.
 ##' @seealso \link{mongo.bson},\cr \link{mongo.bson.buffer},\cr
 ##' \code{\link{mongo.bson.buffer.append}}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -1799,6 +1834,7 @@ mongo.bson.buffer.append.null <- function(buf, name)
 ##' @seealso \link{mongo.bson},\cr \link{mongo.bson.buffer},\cr
 ##' \link{mongo.undefined},\cr \code{\link{mongo.undefined.create}},\cr
 ##' \code{\link{mongo.bson.buffer.append}}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -1843,6 +1879,7 @@ mongo.bson.buffer.append.undefined <- function(buf, name)
 ##' the data.
 ##' @seealso \link{mongo.bson},\cr \link{mongo.bson.buffer},\cr
 ##' \code{\link{mongo.bson.buffer.append}}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -1900,6 +1937,7 @@ mongo.bson.buffer.append.string <- function(buf, name, value)
 ##' \code{\link{mongo.timestamp.create}},\cr
 ##' \code{\link{mongo.bson.buffer.append}},\cr \link{mongo.bson.buffer},\cr
 ##' \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -1931,6 +1969,7 @@ mongo.bson.buffer.append.time <- function(buf, name, time)
 ##' \code{\link{mongo.bson.buffer.append.time}},\cr
 ##' \code{\link{mongo.bson.buffer.append}},\cr \link{mongo.bson},\cr
 ##' \link{mongo.bson.buffer}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -1959,6 +1998,7 @@ mongo.bson.buffer.append.timestamp <- function(buf, name, value)
 ##' @seealso \link{mongo.code},\cr \code{\link{mongo.code.create}},\cr
 ##' \code{\link{mongo.bson.buffer.append}},\cr \link{mongo.bson},\cr
 ##' \link{mongo.bson.buffer}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -1999,6 +2039,7 @@ mongo.bson.buffer.append.code <- function(buf, name, value)
 ##' \code{\link{mongo.bson.buffer.append}},\cr
 ##' \code{\link{mongo.bson.from.list}},\cr \link{mongo.bson.buffer},\cr
 ##' \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' scope <- mongo.bson.from.list(list(scopevar="scopevalue"))
@@ -2044,6 +2085,7 @@ mongo.bson.buffer.append.code.w.scope <- function(buf, name, value)
 ##' @seealso \link{mongo.bson},\cr \link{mongo.bson.buffer},\cr
 ##' \link{mongo.symbol},\cr \code{\link{mongo.symbol.create}},\cr
 ##' \code{\link{mongo.bson.buffer.append}}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -2078,6 +2120,7 @@ mongo.bson.buffer.append.symbol <- function(buf, name, value)
 ##' \code{\link{mongo.bson.buffer.append.regex}},\cr
 ##' \code{\link{mongo.bson.buffer.append}},\cr \link{mongo.bson},\cr
 ##' \link{mongo.bson.buffer}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -2119,6 +2162,7 @@ mongo.bson.buffer.append.regex <- function(buf, name, value)
 ##' the data.
 ##' @seealso \code{\link{mongo.bson.buffer.append}},\cr \link{mongo.bson},\cr
 ##' \link{mongo.bson.buffer}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -2150,6 +2194,7 @@ mongo.bson.buffer.append.raw <- function(buf, name, value, subtype=NULL)
 ##' the data.
 ##' @seealso \link{mongo.bson},\cr \link{mongo.bson.buffer},\cr
 ##' \link{mongo.oid.create},\cr \code{\link{mongo.bson.buffer.append}}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -2180,6 +2225,7 @@ mongo.bson.buffer.append.oid <- function(buf, name, value)
 ##' @seealso \link{mongo.bson},\cr \link{mongo.bson.buffer},\cr
 ##' \code{\link{mongo.bson.from.list}},\cr
 ##' \code{\link{mongo.bson.buffer.append}}.
+##' @export
 ##' @examples
 ##' 
 ##' name <- mongo.bson.from.list(list(first="Joe", last="Smith"))
@@ -2218,6 +2264,7 @@ mongo.bson.buffer.append.bson <- function(buf, name, value)
 ##' @seealso \link{mongo.bson},\cr \link{mongo.bson.buffer},\cr
 ##' \code{\link{mongo.bson.find}},\cr \code{\link{mongo.bson.from.list}},\cr
 ##' \code{\link{mongo.bson.buffer.append}}.
+##' @export
 ##' @examples
 ##' 
 ##' name <- mongo.bson.from.list(list(first="Joe", last="Smith"))
@@ -2277,6 +2324,7 @@ mongo.bson.buffer.append.element <- function(buf, name, value)
 ##' @return TRUE if successful; otherwise, FALSE if an error occured appending
 ##' the data.
 ##' @seealso \link{mongo.bson},\cr \link{mongo.bson.buffer}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -2311,6 +2359,7 @@ mongo.bson.buffer.append <- function(buf, name, value)
 ##' the data.
 ##' @seealso \link{mongo.bson},\cr \link{mongo.bson.buffer},\cr
 ##' \code{\link{mongo.bson.buffer.append}}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -2363,6 +2412,7 @@ mongo.bson.buffer.append.list <- function(buf, name, value)
 ##' @seealso \link{mongo.bson},\cr \link{mongo.bson.buffer},\cr
 ##' \code{\link{mongo.bson.buffer.append}},\cr
 ##' \code{\link{mongo.bson.value}},\cr \code{\link{mongo.bson.iterator.value}}
+##' @export
 ##' @examples
 ##' 
 ##' age <- c(5, 8)
@@ -2412,6 +2462,7 @@ mongo.bson.buffer.append.object <- function(buf, name, value)
 ##' \code{\link{mongo.bson.buffer.finish.object}},\cr
 ##' \code{\link{mongo.bson.buffer.start.array}},\cr
 ##' \code{\link{mongo.bson.buffer.append}}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -2457,6 +2508,7 @@ mongo.bson.buffer.start.object <- function(buf, name)
 ##' \code{\link{mongo.bson.buffer.finish.object}},\cr
 ##' \code{\link{mongo.bson.buffer.start.array}},\cr
 ##' \code{\link{mongo.bson.buffer.append}}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -2502,6 +2554,7 @@ mongo.bson.buffer.start.array <- function(buf, name)
 ##' \code{\link{mongo.bson.buffer.start.object}},\cr
 ##' \code{\link{mongo.bson.buffer.start.array}},\cr
 ##' \code{\link{mongo.bson.buffer.append}}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -2533,6 +2586,7 @@ mongo.bson.buffer.finish.object <- function(buf)
 ##' data with the buffer is converted to a mongo.bson object with
 ##' \code{\link{mongo.bson.from.buffer}()}.
 ##' @seealso \link{mongo.bson.buffer},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' buf <- mongo.bson.buffer.create()
@@ -2545,4 +2599,3 @@ mongo.bson.buffer.finish.object <- function(buf)
 ##' 
 mongo.bson.buffer.size <- function(buf)
     .Call(".mongo.bson.buffer.size", buf)
-

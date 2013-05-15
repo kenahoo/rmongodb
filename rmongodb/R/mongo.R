@@ -55,6 +55,7 @@
 ##' \code{\link{mongo.get.err}},\cr \code{\link{mongo.get.primary}},\cr
 ##' \code{\link{mongo.get.hosts}},\cr \code{\link{mongo.get.socket}},\cr
 ##' \code{\link{mongo.set.timeout}},\cr \code{\link{mongo.get.timeout}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -62,43 +63,6 @@
 ##'     mongo <- mongo.create("192.168.0.3")}
 ##' 
 mongo.create <- function(host="127.0.0.1", name="", username="", password="", db="admin", timeout=0L) {
-
-
-##' The mongo (database connection) class
-##' 
-##' Objects of class "mongo" are used to connect to a MongoDB server and to
-##' perform database operations on that server.
-##' 
-##' mongo objects have "mongo" as their class and contain an externally managed
-##' pointer to the connection data. This pointer is stored in the "mongo"
-##' attribute of the object.
-##' 
-##' Note that the members of the mongo object only reflect\cr the initial
-##' parameters of \code{\link{mongo.create}()}. Only the external data actually
-##' changes if, for example, mongo.timeout is called after the initial call to
-##' \code{mongo.create}.
-##' 
-##' 
-##' @name mongo
-##' @docType class
-##' @seealso \code{\link{mongo.create}},\cr
-##' \code{\link{mongo.is.connected}},\cr \code{\link{mongo.get.databases}},\cr
-##' \code{\link{mongo.get.database.collections}},\cr
-##' \code{\link{mongo.insert}},\cr \code{\link{mongo.find.one}},\cr
-##' \code{\link{mongo.find}},\cr \code{\link{mongo.update}},\cr
-##' \code{\link{mongo.remove}},\cr \code{\link{mongo.drop}},\cr
-##' \code{\link{mongo.drop.database}}\cr \link{mongo.gridfs}.
-##' @examples
-##' 
-##' mongo <- mongo.create()
-##' if (mongo.is.connected(mongo)) {
-##'     buf <- mongo.bson.buffer.create()
-##'     mongo.bson.buffer.append(buf, "name", "Joe")
-##'     mongo.bson.buffer.append(buf, "age", 22L)
-##'     b <- mongo.bson.from.buffer(buf)
-##'     mongo.insert(mongo, "test.people", b)
-##' }
-##' 
     mongo <- .Call(".mongo.create")
     attr(mongo, "host") <- host
     attr(mongo, "name") <- name
@@ -108,7 +72,6 @@ mongo.create <- function(host="127.0.0.1", name="", username="", password="", db
     attr(mongo, "timeout") <- timeout
     .Call(".mongo.connect", mongo)
 }
-
 
 
 ##' Retrieve an connection error code from a mongo object
@@ -139,6 +102,7 @@ mongo.create <- function(host="127.0.0.1", name="", username="", password="", db
 ##' @returnItem 10 BSON invalid - Not valid for the specified operation.
 ##' @returnItem 11 BSON not finished - should not occur with R driver.
 ##' @seealso \code{\link{mongo.create}},\cr \link{mongo}
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -163,6 +127,7 @@ mongo.get.err <- function(mongo)
 ##' @return The mongo object is returned.
 ##' @seealso \link{mongo},\cr \code{\link{mongo.create}},\cr
 ##' \code{\link{mongo.reconnect}},\cr \code{\link{mongo.is.connected}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -185,6 +150,7 @@ mongo.disconnect <- function(mongo)
 ##' @param mongo (\link{mongo}) a mongo connection object.
 ##' @seealso \code{\link{mongo.create}},\cr \code{\link{mongo.disconnect}},\cr
 ##' \link{mongo}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -213,6 +179,7 @@ mongo.reconnect <- function(mongo)
 ##' @return NULL
 ##' @seealso \link{mongo},\cr \code{\link{mongo.disconnect}},\cr
 ##' \code{\link{mongo.is.connected}}\cr \code{\link{mongo.reconnect}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -237,6 +204,7 @@ mongo.destroy <- function(mongo)
 ##' @return Logical TRUE if the mongo connection object is currently connected
 ##' to a server; otherwise, FALSE.
 ##' @seealso \code{\link{mongo.create}},\cr \link{mongo}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -258,6 +226,7 @@ mongo.is.connected <- function(mongo)
 ##' @param mongo (\link{mongo}) a mongo connection object.
 ##' @return Integer socket number
 ##' @seealso \code{\link{mongo.create}},\cr \link{mongo}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -277,6 +246,7 @@ mongo.get.socket <- function(mongo)
 ##' @param mongo (\link{mongo}) a mongo connection object.
 ##' @return String host & port in the format "\%s:\%d".
 ##' @seealso \code{\link{mongo.create}},\cr \link{mongo}.
+##' @export
 ##' @examples
 ##' 
 ##' \dontrun{
@@ -302,6 +272,7 @@ mongo.get.primary <- function(mongo)
 ##' @return NULL if a replica set was not connected to; otherwise, a list of
 ##' host & port strings in the format "%s:%d".
 ##' @seealso \code{\link{mongo.create}},\cr \link{mongo}
+##' @export
 ##' @examples
 ##' 
 ##' \dontrun{
@@ -327,6 +298,7 @@ mongo.get.hosts <- function(mongo)
 ##' timeout value.
 ##' @seealso \code{\link{mongo.get.timeout}},\cr \code{\link{mongo.create}},\cr
 ##' \link{mongo}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -351,6 +323,7 @@ mongo.set.timeout <- function(mongo, timeout)
 ##' @return (integer) timeout value in milliseconds.
 ##' @seealso \code{\link{mongo.set.timeout}},\cr \code{\link{mongo.create}},\cr
 ##' \link{mongo}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -378,6 +351,7 @@ mongo.get.timeout <- function(mongo)
 ##' @return (logical) TRUE if the server reports that it is a master;
 ##' otherwise, FALSE.
 ##' @seealso \code{\link{mongo.create}},\cr \link{mongo}.
+##' @export
 ##' @examples
 ##' 
 ##' \dontrun{
@@ -411,6 +385,7 @@ mongo.is.master <- function(mongo)
 ##' username and password.
 ##' @seealso \code{\link{mongo.add.user}},\cr \link{mongo},\cr
 ##' \code{\link{mongo.create}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -437,6 +412,7 @@ mongo.authenticate <- function(mongo, username, password, db="admin")
 ##' and password.
 ##' @seealso \code{\link{mongo.authenticate}},\cr \link{mongo},\cr
 ##' \code{\link{mongo.create}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -469,6 +445,7 @@ mongo.add.user <- function(mongo, username, password, db="admin")
 ##' @seealso \code{\link{mongo.get.server.err}},\cr
 ##' \code{\link{mongo.get.server.err.string}},\cr
 ##' \code{\link{mongo.get.prev.err}}\cr \link{mongo}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -522,6 +499,7 @@ mongo.get.last.err <- function(mongo, db)
 ##' @seealso \code{\link{mongo.get.server.err}},\cr
 ##' \code{\link{mongo.get.server.err.string}},\cr
 ##' \code{\link{mongo.get.last.err}}\cr \link{mongo}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -573,6 +551,7 @@ mongo.get.prev.err <- function(mongo, db)
 ##' \code{\link{mongo.get.server.err.string}},\cr
 ##' \code{\link{mongo.get.last.err}},\cr \code{\link{mongo.get.prev.err}},\cr
 ##' \link{mongo}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -625,6 +604,7 @@ mongo.reset.err <- function(mongo, db)
 ##' \code{\link{mongo.get.last.err}},\cr \code{\link{mongo.get.prev.err}},\cr
 ##' \code{\link{mongo.find}},\cr \code{\link{mongo.find.one}},\cr
 ##' \code{\link{mongo.index.create}},\cr \link{mongo}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -666,6 +646,7 @@ mongo.get.server.err <- function(mongo)
 ##' \code{\link{mongo.get.last.err}},\cr \code{\link{mongo.get.prev.err}},\cr
 ##' \code{\link{mongo.find}},\cr \code{\link{mongo.find.one}},\cr
 ##' \code{\link{mongo.index.create}},\cr \link{mongo}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -711,6 +692,7 @@ mongo.get.server.err.string <- function(mongo)
 ##' \code{\link{mongo.update}},\cr \code{\link{mongo.find}},\cr
 ##' \code{\link{mongo.find.one}},\cr \code{\link{mongo.remove}},\cr
 ##' \link{mongo.bson},\cr \link{mongo}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -755,6 +737,7 @@ mongo.insert <- function(mongo, ns, b) {
 ##' @seealso \code{\link{mongo.insert}},\cr \code{\link{mongo.update}},\cr
 ##' \code{\link{mongo.find}},\cr \code{\link{mongo.find.one}},\cr
 ##' \code{\link{mongo.remove}},\cr \link{mongo.bson},\cr \link{mongo}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -847,6 +830,7 @@ mongo.update.basic  <- 4L
 ##' @seealso \link{mongo},\cr \link{mongo.bson},\cr
 ##' \code{\link{mongo.insert}},\cr \code{\link{mongo.find}},\cr
 ##' \code{\link{mongo.find.one}},\cr \code{\link{mongo.remove}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -914,6 +898,7 @@ mongo.update <- function(mongo, ns, criteria, objNew, flags=0L) {
 ##' @seealso \link{mongo},\cr \link{mongo.bson},\cr
 ##' \code{\link{mongo.insert}},\cr \code{\link{mongo.update}},\cr
 ##' \code{\link{mongo.find}},\cr \code{\link{mongo.find.one}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -978,6 +963,7 @@ mongo.remove <- function(mongo, ns, criteria=mongo.bson.empty()) {
 ##' @seealso \code{\link{mongo.find}},\cr \code{\link{mongo.index.create}},\cr
 ##' \code{\link{mongo.insert}},\cr \code{\link{mongo.update}},\cr
 ##' \code{\link{mongo.remove}},\cr \link{mongo},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -1134,6 +1120,7 @@ mongo.find.partial.results   <- 128L
 ##' \code{\link{mongo.insert}},\cr \code{\link{mongo.index.create}},\cr
 ##' \code{\link{mongo.update}},\cr \code{\link{mongo.remove}},\cr
 ##' \link{mongo},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -1182,6 +1169,7 @@ mongo.find <- function(mongo, ns, query=mongo.bson.empty(), sort=mongo.bson.empt
 ##' @return TRUE if there is a next record; otherwise, FALSE.
 ##' @seealso \code{\link{mongo.find}},\cr \link{mongo.cursor},\cr
 ##' \code{\link{mongo.cursor.value}},\cr \code{\link{mongo.cursor.destroy}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -1216,6 +1204,7 @@ mongo.cursor.next <- function(cursor)
 ##' @seealso \code{\link{mongo.find}},\cr \code{\link{mongo.cursor}},\cr
 ##' \code{\link{mongo.cursor.next}},\cr \code{\link{mongo.cursor.value}},\cr
 ##' \code{\link{mongo.cursor.destroy}},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -1259,6 +1248,7 @@ mongo.cursor.value <- function(cursor)
 ##' cursor should not be used for further operations.
 ##' @seealso \code{\link{mongo.find}},\cr \link{mongo.cursor},\cr
 ##' \code{\link{mongo.cursor.next}},\cr \code{\link{mongo.cursor.value}}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -1349,6 +1339,7 @@ mongo.index.sparse     <- 16L
 ##' @seealso \code{\link{mongo.find}},\cr \code{\link{mongo.find.one}},\cr
 ##' \code{\link{mongo.insert}},\cr \code{\link{mongo.update}},\cr
 ##' \code{\link{mongo.remove}},\cr \link{mongo},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -1403,6 +1394,7 @@ mongo.index.create <- function(mongo, ns, key, options=0L) {
 ##' @seealso \code{\link{mongo.find}},\cr \code{\link{mongo.find.one}},\cr
 ##' \code{\link{mongo.insert}},\cr \code{\link{mongo.update}},\cr
 ##' \code{\link{mongo.remove}},\cr \link{mongo},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -1472,6 +1464,7 @@ mongo.count <- function(mongo, ns, query=mongo.bson.empty()) {
 ##' \code{\link{mongo.simple.command}},\cr \code{\link{mongo.rename}},\cr
 ##' \code{\link{mongo.count}},\cr \code{\link{mongo.drop.database}},\cr
 ##' \code{\link{mongo.drop}},\cr \link{mongo},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -1534,6 +1527,7 @@ mongo.command <- function(mongo, db, command) {
 ##' @seealso \code{\link{mongo.command}},\cr \code{\link{mongo.rename}},\cr
 ##' \code{\link{mongo.count}},\cr \code{\link{mongo.drop.database}},\cr
 ##' \code{\link{mongo.drop}},\cr \link{mongo},\cr \link{mongo.bson}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -1561,6 +1555,7 @@ mongo.simple.command <- function(mongo, db, cmdstr, arg)
 ##' @return (Logical) TRUE if successful; otherwise, FALSE
 ##' @seealso \code{\link{mongo.drop}},\cr \code{\link{mongo.command}},\cr
 ##' \code{\link{mongo.rename}},\cr \code{\link{mongo.count}},\cr \link{mongo}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -1589,6 +1584,7 @@ mongo.drop.database <- function(mongo, db)
 ##' @seealso \code{\link{mongo.drop.database}},\cr
 ##' \code{\link{mongo.command}},\cr \code{\link{mongo.rename}},\cr
 ##' \code{\link{mongo.count}},\cr \link{mongo}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -1617,6 +1613,7 @@ mongo.drop <- function(mongo, ns)
 ##' @return TRUE if successful; otherwise, FALSE.
 ##' @seealso \code{\link{mongo.drop.database}},\cr \code{\link{mongo.drop}},\cr
 ##' \code{\link{mongo.command}},\cr \code{\link{mongo.count}},\cr \link{mongo}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -1642,6 +1639,7 @@ mongo.rename <- function(mongo, from.ns, to.ns)
 ##' @seealso \code{\link{mongo.get.database.collections}},\cr
 ##' \code{\link{mongo.drop.database}},\cr \code{\link{mongo.command}},\cr
 ##' \code{\link{mongo.rename}},\cr \link{mongo}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -1674,6 +1672,7 @@ mongo.get.databases <- function(mongo)
 ##' \code{\link{mongo.drop.database}},\cr \code{\link{mongo.drop}},\cr
 ##' \code{\link{mongo.command}},\cr \code{\link{mongo.rename}},\cr
 ##' \link{mongo}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()
@@ -1710,6 +1709,7 @@ mongo.get.database.collections <- function(mongo, db)
 ##' @seealso \code{\link{mongo.command}},\cr
 ##' \code{\link{mongo.simple.command}},\cr \code{\link{mongo.find}},\cr
 ##' \link{mongo}.
+##' @export
 ##' @examples
 ##' 
 ##' mongo <- mongo.create()

@@ -1,3 +1,84 @@
+##' R-MongoDB driver
+##'
+##' Provides an interface to MongoDB for R
+##'
+##' @name rmongodb-package
+##' @aliases rmongodb-package rmongodb
+##' @export mongo.binary.function
+##' @export mongo.binary.md5
+##' @export mongo.binary.old
+##' @export mongo.binary.user
+##' @export mongo.binary.uuid
+##' @export mongo.bson.eoo   mongo.bson.double    mongo.bson.string    mongo.bson.object
+##' @export mongo.bson.array mongo.bson.binary    mongo.bson.undefined mongo.bson.oid
+##' @export mongo.bson.bool  mongo.bson.date      mongo.bson.null      mongo.bson.regex
+##' @export mongo.bson.dbref mongo.bson.code      mongo.bson.symbol    mongo.bson.code.w.scope
+##' @export mongo.bson.int   mongo.bson.timestamp mongo.bson.long
+##' 
+##' @export mongo.binary.binary
+##' @export mongo.find.await.data
+##' @export mongo.find.cursor.tailable
+##' @export mongo.find.exhaust
+##' @export mongo.find.no.cursor.timeout
+##' @export mongo.find.oplog.replay
+##' @export mongo.find.partial.results
+##' @export mongo.find.slave.ok
+##' @export mongo.index.background
+##' @export mongo.index.drop.dups
+##' @export mongo.index.sparse
+##' @export mongo.index.unique
+##' @export mongo.update.basic
+##' @export mongo.update.multi
+##' @export mongo.update.upsert
+##' 
+##' @useDynLib rmongodb .registration=TRUE
+##' 
+##' @docType package
+##' @author Gerald Lindsly & 10gen, Inc. (mongo-c-driver)
+##'
+##' Maintainer: Gerald Lindsly gerald.lindsly@@gmail.com
+##' @seealso \link{mongo}
+##' @references http://www.mongodb.org
+##' @keywords package
+NULL
+
+
+##' The mongo (database connection) class
+##'
+##' Objects of class "mongo" are used to connect to a MongoDB server and to
+##' perform database operations on that server.
+##'
+##' mongo objects have "mongo" as their class and contain an externally managed
+##' pointer to the connection data. This pointer is stored in the "mongo"
+##' attribute of the object.
+##'
+##' Note that the members of the mongo object only reflect\cr the initial
+##' parameters of \code{\link{mongo.create}()}. Only the external data actually
+##' changes if, for example, mongo.timeout is called after the initial call to
+##' \code{mongo.create}.
+##'
+##'
+##' @name mongo
+##' @docType class
+##' @seealso \code{\link{mongo.create}},\cr
+##' \code{\link{mongo.is.connected}},\cr \code{\link{mongo.get.databases}},\cr
+##' \code{\link{mongo.get.database.collections}},\cr
+##' \code{\link{mongo.insert}},\cr \code{\link{mongo.find.one}},\cr
+##' \code{\link{mongo.find}},\cr \code{\link{mongo.update}},\cr
+##' \code{\link{mongo.remove}},\cr \code{\link{mongo.drop}},\cr
+##' \code{\link{mongo.drop.database}}\cr \link{mongo.gridfs}.
+##' @examples
+##'
+##' mongo <- mongo.create()
+##' if (mongo.is.connected(mongo)) {
+##'     buf <- mongo.bson.buffer.create()
+##'     mongo.bson.buffer.append(buf, "name", "Joe")
+##'     mongo.bson.buffer.append(buf, "age", 22L)
+##'     b <- mongo.bson.from.buffer(buf)
+##'     mongo.insert(mongo, "test.people", b)
+##' }
+##'
+NULL
 
 
 ##' The mongo.bson.buffer class
@@ -615,29 +696,3 @@ NULL
 ##' # { "Undef": UNDEFINED, "listWundef" : { "u1" : UNDEFINED, "One" : 1 } }
 ##' 
 NULL
-
-
-
-
-
-##' R-MongoDB driver
-##' 
-##' Provides an interface to MongoDB for R
-##' 
-##' \tabular{ll}{ Package: \tab rmongodb\cr Type: \tab Package\cr Version: \tab
-##' 1.0.5\cr Date: \tab 2012-12-22\cr License: \tab Apache License 2.0\cr
-##' LazyLoad: \tab yes\cr } Overview
-##' 
-##' @name rmongodb-package
-##' @aliases rmongodb-package rmongodb
-##' @docType package
-##' @author Gerald Lindsly & 10gen, Inc. (mongo-c-driver)
-##' 
-##' Maintainer: Gerald Lindsly gerald.lindsly@@gmail.com
-##' @seealso \link{mongo}
-##' @references http://www.mongodb.org
-##' @keywords package
-NULL
-
-
-
