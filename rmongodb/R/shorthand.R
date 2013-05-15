@@ -12,6 +12,30 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
+
+
+##' Define shorthand for BSON and GridFS
+##' 
+##' Define shorthand names for BSON and GridFS functions and constants.
+##' 
+##' All symbols dealing with BSON and GridFS are defined by this function
+##' excluding the "mongo." prefix.  They will still be available by the orginal
+##' names also.  For clarity, the symbols in the mongo module (for
+##' communication with the server) are not shortened.
+##' 
+##' 
+##' @return TRUE
+##' @seealso \link{mongo.bson},\cr \link{mongo.gridfs},\cr
+##' \code{\link{mongo.bson.buffer.create}},\cr
+##' \code{\link{mongo.bson.buffer.append}},\cr
+##' \code{\link{mongo.bson.from.buffer}}.
+##' @examples
+##' 
+##' mongo.shorthand()
+##' buf <- bson.buffer.create()
+##' bson.buffer.append(buf, "name", "Alice")
+##' b <- bson.from.buffer(buf)
+##' 
 mongo.shorthand <- function() {
     evalq(
         {
