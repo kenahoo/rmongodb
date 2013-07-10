@@ -1731,3 +1731,90 @@ mongo.distinct <- function(mongo, ns, key, query=mongo.bson.empty()) {
         b <- mongo.bson.value(b, "values")
     b
 }
+
+
+##' Create a \code{data.frame} from a \code{mongo.cursor}
+##'
+##' Although in general a query result set may have arbitrary structure
+##' that can't be converted to a nice R aggregate object, much of the
+##' time each result is a nice flat object with the same fields.  In that
+##' case we can fairly easily convert the entire result set to a
+##' \code{\link{data.frame}}.
+##'
+##' @param x a \code{\link{mongo.cursor}} object, typically the result of a
+##'   \code{\link{mongo.find}} operation.
+##' @param includeId whether to include any column of class \code{mongo.oid}.
+##' @param callback a function to be run on the data, before turning it into a
+##'   \code{data.frame}.  The function will be passed the result of
+##'   \code{\link{as.list}(doc)} for each document, and should hand back a list.
+##' @param nullToNA whether to turn any \code{NULL} values into \code{NA}
+##'   values.  Usually this is a good idea, because sporadic \code{NULL} values
+##'   will cause structural problems in the data.frame, whereas \code{NA} values
+##'   will just appear as regular \code{NA}s.
+##' @param ... any further arguments to pass to \code{callback}
+##'
+##' @export
+##' @examples
+##' mongo <- mongo.create()
+##' if (mongo.is.connected(mongo)) {
+##'   cursor <- mongo.find(mongo, ns='test.people', limit=5)
+##'   value <- as.data.frame(cursor)
+##' }
+as.data.frame.mongo.cursor <- function(x, includeId=FALSE, callback, nullToNA=TRUE, ...) {
+  result <- data.frame()
+  while (mongo.cursor.next(x)) {
+    val <- as.list(mongo.cursor.value(x))
+    if (!includeId)
+      val <- val[sapply(val, class) != 'mongo.oid']
+    if (!missing(callback))
+      val <- callback(val, ...)
+    if (nullToNA)
+      val[sapply(val, is.null)] <- NA
+    result <- rbind(result, as.data.frame(val, stringsAsFactors=FALSE))
+  }
+  result
+}
+
+##' Create a \code{data.table} from a \code{mongo.cursor}
+##'
+##' This is identical to \code{\link{as.data.frame.mongo.cursor}}, except it
+##' creates a \code{\link{data.table}} instead of a vanilla \code{data.frame}, and
+##' as such can be much faster.
+##'
+##' @export
+##' @importFrom data.table data.table
+as.data.table.mongo.cursor <- function(x, includeId=FALSE, callback, nullToNA=TRUE, ...) {
+  i <- 0L
+  n <- 0L
+  growth.factor <- 1.5
+  result <- data.table()
+  while (mongo.cursor.next(x)) {
+    val <- as.list(mongo.cursor.value(x))
+    if (!includeId)
+      val <- val[sapply(val, class) != 'mongo.oid']
+    if (!missing(callback))
+      val <- callback(val, ...)
+    if (nullToNA)
+      val[sapply(val, is.null)] <- NA_real_
+
+    i <- i+1L
+    if (i==1L) {
+      ## TODO let the caller specify subtypes for NA values
+      result <- data.table(as.data.frame(val))
+    } else {
+      if (i > nrow(result)) {
+        nmore.rows <- ceiling((growth.factor-1)*nrow(result))
+        result <- rbind(result, result[1:nmore.rows,])
+      }
+      for(j in seq_len(ncol(result))) {
+        set(result, i, j, val[[ names(result)[j] ]])
+      }
+    }
+    n <- n+1L
+  }
+  result[seq_len(n),]
+}
+
+##' @export
+as.list.mongo.bson <- function(x, ...)
+  as.list(mongo.bson.to.list(x))
